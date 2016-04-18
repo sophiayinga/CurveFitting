@@ -21,7 +21,7 @@
 
 /* Local function definitions */
 char* creatBuffer(int size);
-int correct(int x);
+int correct(double x);
 
 /******************************************************************************
  Program to test the correction module.  Reads in input params from the user
@@ -38,15 +38,18 @@ int main(int argc, char *argv[])
 {
 	/* local variables */
 	int numItem = 0;
-	int actualValue;
 	int correctedValue;
 	double actualVoltage;
+	double actualValue;
 	char *buffer;
 	char *token;
+	FILE *inputFIle;
 
+
+	inputFIle = fopen(argv[1], "r");
 	buffer = creatBuffer(BUFSIZE);
 	/*read stdin line by line*/
-	while(fgets(buffer, BUFSIZE, stdin) != NULL)
+	while(fgets(buffer, BUFSIZE, inputFIle) != NULL)
 	{
 		if(strcmp(buffer,"\n") && strcmp(buffer,"\r\n"))
 		{
@@ -55,7 +58,7 @@ int main(int argc, char *argv[])
 			/* reading token separated by spaces */
 			actualVoltage = atof(token);
 			token = strtok(NULL, " ");
-			actualValue = atoi(token);
+			actualValue = atof(token);
 			correctedValue = correct(actualValue);
 			/* print to stdout */
 			fprintf(stdout, "%f ", actualVoltage);
@@ -102,11 +105,24 @@ char* creatBuffer(int size)
  errors:         - Error message printed to stderr and exits with an error
  code
  ******************************************************************************/
-int correct(int x)
+int correct(double x)
 {
-	double a = 4E-05;
-	double b = 0.7329;
-	double c = 52.973;
+	
+	double a = 0.00000002;
+	double b = 0.0001;
+	double c = 0.977;
+	double d = 46.786;
+	double result = 0;
 
-	return (int)(a * (x * x) + b * x + c + 0.5);
+	result = (a * (x * x * x) - b * (x * x) + c * x - d);
+	/*
+	double a = 0.00004;
+	double b = 0.7326;
+	double c = 53.133;
+	double result = 0;
+
+	result = (a * (x * x) + b * x + c);
+	*/
+
+	return (int)(result + 0.5);
 }
