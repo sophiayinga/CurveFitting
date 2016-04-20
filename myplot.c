@@ -56,19 +56,23 @@ int main (int argc, char *argv[])
         Gnuplot commands 
         ---------------------------------------------------------------*/
         /* Set output to png file, can change to svg or x11 */
-
+        fprintf(pipe, "set terminal png enchanced font 'DejaVuSans.ttf' 12\n");
 
         /* Set the output file name */
-
+        fprintf(pipe, "set output 'plotfile.png'\n");
 
         /* Set plot attributes */ 
-
+        fprintf(pipe "set key on\n");
+        fprintf(pipe "set border 3\n");
+        fprintf(pipe "set style data lines\n");
 
         /* Title, labels and legend */
-
+        fprintf(pipe "set title 'Sensor Respond Curve'\n");
+        fprintf(pipe "set ylabel 'Digital Output'\n");
+        fprintf(pipe "set xlabel 'Voltage'\n");
 
         /* Read data from file and generate plot */ 
-
+        fprintf(pipe "plot 'alldata.txt' using 1:2 1t 1 1w 1.5 t 'plot1', 'alldata.txt' using 1:4 1t 2 1w 2.5 t 'plot2'\n");
 
         /* clean up: close pipe and return success code */
         pclose (pipe);
