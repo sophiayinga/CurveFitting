@@ -1,0 +1,7 @@
+﻿Kaiwen Zheng									CMPE-380
+
+HW8											Prof. Repka
+
+	In order to analyze the digital output from the sensor, I first had set a baseline of the amount of error in the system. So I ran  the provided binary files and redirected the output to a text file so that I could generate a plot in Excel. The plot seemed almost linear with the exception of the top end being a flat line. Ideally speaking, the digital output from this type of sensor should be linearly proportional to the input voltage. However, the measured digital output was not linear as the manufacturer interned to. The goal was to find a correction equation that would linearize the digital output of the sensor. One important approach I made to correct the digital output was to find an equation that would take in the actual output as x, and generate a more linearized value as y instead of taking in the voltage as x and calculating the corrected value as y. It was assumed that the sensor's physical mechanism for measuring voltage was not flawed. Rather, the issue was linearizing the non-linear output. The focus should be finding an equation that would generate corrected output using actual sensor output as input.
+
+	With the analyzing approach established, I moved to find the ideal output from the sensor.
